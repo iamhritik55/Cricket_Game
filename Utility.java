@@ -23,7 +23,12 @@ public class Utility {
         int fours=0;
         int six=0;
         while(j<10) {
-            for (int i = 0; i < 6; i++) {
+//            For debugging
+//            team.display();
+//            team2.display();
+
+            for (int i = 0; i < 6; i++)
+            {
                 ArrayList<Player> bowlingPlayers = team2.getPlayers();
                 Player bowler = bowlingPlayers.get(4-(j%5));
                 bowler.setTotalBallsDelivered(bowler.getTotalBallsDelivered() + 1);
@@ -38,7 +43,7 @@ public class Utility {
                 }
                 else if (ballResult == 7) {
                    ArrayList<Player>  players =  team.getPlayers();
-                   Player p = new Player();
+                   Player p = players.get(wickets);
                    p.setName(players.get(wickets).getName());
                    p.setBattingScore(currentPlayerScore);
                    p.setTotal4s(fours);
@@ -66,7 +71,7 @@ public class Utility {
                 currentPlayerScore+=ballResult;
                 if (team.getInning() == 2 && team.getScore() >= target) {
                     ArrayList<Player>  players =  team.getPlayers();
-                    Player p = new Player();
+                    Player p = players.get(wickets);
                     p.setName(players.get(wickets).getName());
                     p.setBattingScore(currentPlayerScore);
                     p.setTotal4s(fours);
@@ -81,7 +86,7 @@ public class Utility {
         if(wickets<5)
         {
             ArrayList<Player>  players =  team.getPlayers();
-            Player p = new Player();
+            Player p = players.get(wickets);
             p.setName(players.get(wickets).getName());
             p.setBattingScore(currentPlayerScore);
             p.setTotal4s(fours);

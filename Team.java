@@ -49,5 +49,21 @@ public class Team {
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+
+    public void display(){
+        for(int i=0;i<5;i++)
+        {
+            System.out.println(this.players.get(i).getName() + " " + this.players.get(i).getBattingScore() + " " +
+                    this.players.get(i).getTotal4s() + " " + this.players.get(i).getTotal6s());
+        }
+        System.out.println("\n");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(
+                    this.players.get(i).getName() + " " + this.players.get(i).getTotalBallsDelivered() + " " +
+                            this.players.get(i).getBowlingWickets());
+        }
+        System.out.println("\n");
+        System.out.println("\n");
+    }
 }
 
