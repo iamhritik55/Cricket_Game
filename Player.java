@@ -3,16 +3,16 @@ public class Player {
     private String name;
     private String id;
     private String teamId;
-    private int battingScore,bowlingWickets,bowlingOvers;
+    private int battingScore,bowlingWickets, totalBallsDelivered;
     //    HashMap<Integer, Integer> scores = new HashMap<Integer, Integer>(); //stores score of each match
     private int total4s, total6s, totalMatchesPlayed;
 
-    public void setBowlingOvers(int bowlingOvers) {
-        this.bowlingOvers = bowlingOvers;
+    public void setTotalBallsDelivered(int totalBallsDelivered) {
+        this.totalBallsDelivered = totalBallsDelivered;
     }
 
-    public int getBowlingOvers() {
-        return bowlingOvers;
+    public int getTotalBallsDelivered() {
+        return totalBallsDelivered;
     }
 
     public void setBowlingWickets(int bowlingWickets) {
@@ -27,6 +27,8 @@ public class Player {
         this.total4s = 0;
         this.total6s = 0;
         this.totalMatchesPlayed = 0;
+        this.totalBallsDelivered =0;
+        this.bowlingWickets=0;
     }
 
     public int getBattingScore() {

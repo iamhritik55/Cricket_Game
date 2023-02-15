@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Utility {
@@ -15,17 +16,78 @@ public class Utility {
         }
     }
 
-    public void batting(Team team) {
+    public void matching(Team team , Team team2 , int target) {
         int wickets = 0;
-        for (int i = 0; i < 6; i++) {
-            int ballResult = decision.nextInt(7) + 1;
-            if (ballResult == 7) {
-                wickets++;
+        int j=0;
+        int currentPlayerScore=0;
+        int fours=0;
+        int six=0;
+        while(j<10) {
+            for (int i = 0; i < 6; i++) {
+                ArrayList<Player> bowlingPlayers = team2.getPlayers();
+                Player bowler = bowlingPlayers.get(4-(j%5));
+                bowler.setTotalBallsDelivered(bowler.getTotalBallsDelivered() + 1);
+               // System.out.println(bowler.getName()+" ballDelivered "+bowler.getTotalBallsDelivered()+"\n");
+                int ballResult = decision.nextInt(7) + 1;
+                if(ballResult==4){
+                    fours++;
+                }
+                else if(ballResult==6)
+                {
+                    six++;
+                }
+                else if (ballResult == 7) {
+                   ArrayList<Player>  players =  team.getPlayers();
+                   Player p = new Player();
+                   p.setName(players.get(wickets).getName());
+                   p.setBattingScore(currentPlayerScore);
+                   p.setTotal4s(fours);
+                   p.setTotal6s(six);
+                   players.set(wickets,p);
+                   team.setPlayers(players);
+                   wickets++;
+                   currentPlayerScore=0;
+                   fours=0;
+                   six=0;
+                   bowler.setBowlingWickets(bowler.getBowlingWickets()+1);
+                  // System.out.println(bowler.getName()+" wicket "+bowler.getBowlingWickets()+"\n");
+                   bowlingPlayers.set(4-(j%5),bowler);
+                   team2.setPlayers(bowlingPlayers);
+
+                    if (wickets == 5) {
+                        return ;
+                    }
+                    continue;
+                }
+                bowlingPlayers.set(4-(j%5),bowler);
+                team2.setPlayers(bowlingPlayers);
+
+                team.setScore(team.getScore() + ballResult);
+                currentPlayerScore+=ballResult;
+                if (team.getInning() == 2 && team.getScore() >= target) {
+                    ArrayList<Player>  players =  team.getPlayers();
+                    Player p = new Player();
+                    p.setName(players.get(wickets).getName());
+                    p.setBattingScore(currentPlayerScore);
+                    p.setTotal4s(fours);
+                    p.setTotal6s(six);
+                    players.set(wickets,p);
+                    team.setPlayers(players);
+                    return;
+                }
             }
-            if (wickets == 10) {
-                break;
-            }
-            team.setScore(team.getScore()+ballResult);
+            j++;
+        }
+        if(wickets<5)
+        {
+            ArrayList<Player>  players =  team.getPlayers();
+            Player p = new Player();
+            p.setName(players.get(wickets).getName());
+            p.setBattingScore(currentPlayerScore);
+            p.setTotal4s(fours);
+            p.setTotal6s(six);
+            players.set(wickets,p);
+            team.setPlayers(players);
         }
     }
 
