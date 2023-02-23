@@ -11,11 +11,13 @@ public class Team {
     public Team() {
         this.score = 0;
     }
-    public String getName(){
+
+    public String getName() {
         return this.name;
     }
-    public void setName(String name){
-        this.name=name;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getScore() {
